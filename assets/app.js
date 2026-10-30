@@ -1,4 +1,11 @@
 (() => {
+  function fail(msg) {
+    var d = document.getElementById("diag");
+    if (d) { d.hidden = false; d.textContent = msg; }
+    var s = document.getElementById("splash");
+    if (s) s.style.display = "none";
+  }
+  if (!window.QURAN_META) { fail("ملف البيانات لم يتحمل — أعد تحميل الصفحة"); return; }
   const { surahs, juz } = window.QURAN_META;
   const $ = id => document.getElementById(id);
   const app = $("app"), topbar = $("topbar"), readerBar = $("readerBar"), appEl = $("app");

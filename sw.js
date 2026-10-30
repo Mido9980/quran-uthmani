@@ -1,4 +1,4 @@
-const CACHE = "quran-v1";
+const CACHE = "quran-v2";
 const CORE = ["./", "./index.html", "./assets/style.css", "./assets/app.js", "./assets/data.js",
   "./assets/splash.jpg", "./icons/icon-192.png", "./icons/icon-512.png", "./manifest.webmanifest"];
 

@@ -91,3 +91,5 @@ body[data-paper="night"] .page-img{filter:invert(1) hue-rotate(180deg) brightnes
 .loadbar{height:8px;background:#103124;border-radius:99px;overflow:hidden;margin-top:8px;border:1px solid #24513c}
 .loadbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .25s}
 @media(min-width:900px){.page-img{max-height:calc(100vh - 130px)}}
+
+#diag{position:fixed;bottom:0;inset-inline:0;z-index:99;background:#7a1a1a;color:#fff;font:13px/1.6 Tahoma,sans-serif;padding:10px 14px;text-align:center;direction:rtl}

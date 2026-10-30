@@ -13,8 +13,19 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="stylesheet" href="assets/style.css">
+<style>.splash{animation:splashAuto 0.5s 3.5s forwards}@keyframes splashAuto{to{opacity:0;visibility:hidden;pointer-events:none}}</style>
 </head>
 <body>
+
+<script>
+window.addEventListener("error", function(e){
+  try{
+    var d=document.getElementById("diag");
+    if(d){ d.hidden=false; d.textContent = "خطأ تقني: " + (e.message||"unknown"); }
+  }catch(_){}
+}, true);
+</script>
+<div id="diag" hidden></div>
 
 <div id="splash" class="splash">
   <img src="assets/splash.jpg" alt="المصحف الشريف">
@@ -47,7 +58,7 @@
   <div class="sheet-inner" id="sheetInner"></div>
 </div>
 
-<script src="assets/data.js"></script>
+<script src="assets/data.js" onerror="var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/gh/Mido9980/quran-uthmani@main/assets/data.js';document.head.appendChild(s)"></script>
 <script src="assets/app.js"></script>
 
 <noscript>
