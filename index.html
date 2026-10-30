@@ -49,5 +49,27 @@
 
 <script src="assets/data.js"></script>
 <script src="assets/app.js"></script>
+
+<noscript>
+  <div style="position:fixed;inset:0;display:grid;place-items:center;background:#0d2b1f;color:#f0d27a;text-align:center;padding:24px;font-family:Tahoma">
+    <div><h2>المصحف يحتاج تشغيل الجافاسكربت</h2><p>فعّل الجافاسكربت في المتصفح أو افتح الرابط من كروم أو سفاري.</p></div>
+  </div>
+</noscript>
+<script>
+/* احتياطي: لو السكربت الأساسي اتأخر أو حصل خطأ */
+setTimeout(function(){
+  var s=document.getElementById('splash');
+  if(s){ s.style.display='none'; }
+  var t=document.getElementById('topbar'), a=document.getElementById('app');
+  if(t) t.hidden=false;
+  if(a) a.hidden=false;
+  if(a && !a.innerHTML.trim()){
+    a.innerHTML='<section class="hero" style="margin-top:8px"><h1>المصحف الشريف</h1>'+
+      '<p>لو الصفحة مش بتحمل صح، اضغط الزر:</p>'+
+      '<div class="acts"><button class="btn gold" onclick="location.reload(true)">إعادة تحميل</button>'+
+      '<a class="btn" href="#/">الفهرس</a></div></section>';
+  }
+},2800);
+</script>
 </body>
 </html>
