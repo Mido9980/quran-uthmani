@@ -18,7 +18,7 @@ self.addEventListener("fetch", e => {
   if (url.origin !== location.origin) return;
 
   // pages: cache-first forever (never changes)
-  if (url.pathname.includes("/pages/")) {
+  if (url.pathname.includes("/pages/") || url.pathname.includes("/pages-blue/")) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => {
       const copy = res.clone();
       caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});

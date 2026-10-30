@@ -2,18 +2,23 @@
   const { surahs, juz } = window.QURAN_META;
   const $ = id => document.getElementById(id);
   const app = $("app"), topbar = $("topbar"), readerBar = $("readerBar"), appEl = $("app");
-  const K = { page: "quran.page", paper: "quran.paper", marks: "quran.marks", offline: "quran.offline" };
+  const K = { page: "quran.page", paper: "quran.paper", marks: "quran.marks", offline: "quran.offline", edition: "quran.edition" };
 
   const st = {
     page: +(localStorage.getItem(K.page) || 1),
     paper: localStorage.getItem(K.paper) || "cream",
     marks: JSON.parse(localStorage.getItem(K.marks) || "[]"),
+    edition: localStorage.getItem(K.edition) || "white",
     view: "list"
   };
   document.body.dataset.paper = st.paper;
 
   const AR = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
-  const pageSrc = p => `pages/${String(p).padStart(3, "0")}.png`;
+  const EDITIONS = {
+    white: { name: "مصحف المدينة — أبيض", dir: "pages/" },
+    blue:  { name: "مصحف المدينة — أزرق", dir: "pages-blue/" }
+  };
+  const pageSrc = p => `${(EDITIONS[st.edition] || EDITIONS.white).dir}${String(p).padStart(3, "0")}.png`;
   const surahOf = p => [...surahs].reverse().find(s => s.p <= p) || surahs[0];
   const juzOf = p => { let j = 1; juz.forEach((sp, i) => { if (p >= sp) j = i + 1; }); return j; };
 
@@ -195,11 +200,22 @@
       <h3>لون الصفحة</h3>
       ${papers.map(([k, n, c]) => `<div class="opt ${st.paper === k ? "on" : ""}" data-paper="${k}">
         <span class="swatch" style="background:${c}"></span><span>${n}</span></div>`).join("")}
+      <h3 style="margin-top:16px">نسخة المصحف</h3>
+      ${Object.entries(EDITIONS).map(([k, v]) => `<div class="opt ${st.edition === k ? "on" : ""}" data-ed="${k}">
+        <span class="swatch" style="background:${k === "blue" ? "#dfeefc" : "#ffffff"}"></span><span>${v.name}</span></div>`).join("")}
       <h3 style="margin-top:16px">انتقال سريع</h3>
       <div class="note">اكتب رقم الصفحة (١ – ٦٠٤)</div>
       <input class="search" id="jumpInput" inputmode="numeric" placeholder="رقم الصفحة">
       <button class="btn gold" id="jumpGo" style="margin-top:10px;width:100%">اذهب</button>
     `);
+    document.querySelectorAll("[data-ed]").forEach(el => el.onclick = () => {
+      st.edition = el.dataset.ed;
+      localStorage.setItem(K.edition, st.edition);
+      closeSheet();
+      const img = document.getElementById("pageImg");
+      if (img) img.src = pageSrc(st.page);
+      toast("تم التغيير إلى " + EDITIONS[st.edition].name);
+    });
     document.querySelectorAll("[data-paper]").forEach(el => el.onclick = () => {
       st.paper = el.dataset.paper;
       localStorage.setItem(K.paper, st.paper);
