@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>المصحف الشريف — بالرسم العثماني</title>
+<meta name="description" content="المصحف الشريف كامل 604 صفحات بالرسم العثماني، يعمل بدون إنترنت على كل الأجهزة، مع فهرس السور والأجزاء والعلامات المرجعية.">
+<meta name="theme-color" content="#0d2b1f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="المصحف">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div id="splash" class="splash">
+  <img src="assets/splash.jpg" alt="المصحف الشريف">
+  <div class="splash-load"><span></span></div>
+</div>
+
+<header class="topbar" id="topbar" hidden>
+  <button class="ibtn" id="backBtn" aria-label="رجوع">☰</button>
+  <div class="brand">📖 <b>المصحف</b></div>
+  <div class="spacer"></div>
+  <button class="ibtn" id="themeBtn" aria-label="الألوان">🎨</button>
+  <button class="ibtn" id="bmBtn" aria-label="حفظ الصفحة">🔖</button>
+</header>
+
+<main id="app" hidden></main>
+
+<nav class="reader-bar" id="readerBar" hidden>
+  <button class="ibtn" id="prevBtn" aria-label="السابق">‹</button>
+  <div class="page-info">
+    <span id="pageLbl">١</span>
+    <span class="sep">·</span>
+    <span id="surahLbl">الفاتحة</span>
+    <span class="sep">·</span>
+    <span id="juzLbl">الجزء ١</span>
+  </div>
+  <button class="ibtn" id="nextBtn" aria-label="التالي">›</button>
+</nav>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-inner" id="sheetInner"></div>
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

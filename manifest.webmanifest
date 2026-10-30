@@ -1,0 +1,24 @@
+{
+  "name": "المصحف الشريف — الرسم العثماني",
+  "short_name": "المصحف",
+  "description": "المصحف الشريف كامل 604 صفحات بالرسم العثماني، يعمل بدون إنترنت",
+  "lang": "ar",
+  "dir": "rtl",
+  "id": "/",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d2b1f",
+  "theme_color": "#0d2b1f",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "متابعة القراءة", "url": "./index.html#/read/last", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "فهرس السور", "url": "./index.html#/", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
