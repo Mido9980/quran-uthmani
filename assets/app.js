@@ -21,6 +21,10 @@
   document.body.dataset.paper = st.paper;
 
   const AR = n => String(n).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+  let blueAvailable = true;
+  fetch("pages-blue/001.png", { cache: "force-cache" })
+    .then(r => { if (!r.ok) blueAvailable = false; })
+    .catch(() => { blueAvailable = false; });
   const EDITIONS = {
     white: { name: "مصحف المدينة — أبيض", dir: "pages/" },
     blue:  { name: "مصحف المدينة — أزرق", dir: "pages-blue/" }
@@ -203,12 +207,13 @@
 
   function openThemeSheet() {
     const papers = [["cream", "ورقي", "#f7f3e8"], ["white", "أبيض", "#f2f2f2"], ["sepia", "سيبيا", "#efe2c6"], ["green", "أخضر", "#dfeade"], ["night", "ليلي", "#0b1512"]];
+    const edList = Object.entries(EDITIONS).filter(([k]) => blueAvailable || k !== "blue");
     openSheet(`
       <h3>لون الصفحة</h3>
       ${papers.map(([k, n, c]) => `<div class="opt ${st.paper === k ? "on" : ""}" data-paper="${k}">
         <span class="swatch" style="background:${c}"></span><span>${n}</span></div>`).join("")}
       <h3 style="margin-top:16px">نسخة المصحف</h3>
-      ${Object.entries(EDITIONS).map(([k, v]) => `<div class="opt ${st.edition === k ? "on" : ""}" data-ed="${k}">
+      ${edList.map(([k, v]) => `<div class="opt ${st.edition === k ? "on" : ""}" data-ed="${k}">
         <span class="swatch" style="background:${k === "blue" ? "#dfeefc" : "#ffffff"}"></span><span>${v.name}</span></div>`).join("")}
       <h3 style="margin-top:16px">انتقال سريع</h3>
       <div class="note">اكتب رقم الصفحة (١ – ٦٠٤)</div>

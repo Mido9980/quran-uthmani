@@ -31,6 +31,12 @@ jobs:
             -storepass quran2026 -keypass quran2026 \
             -dname "CN=EASY CODE, OU=Quran, O=EASY CODE, L=Cairo, S=Cairo, C=EG"
 
+      - name: Bundle web app (offline)
+        run: |
+          mkdir -p android/app/src/main/assets/www
+          cp -r index.html manifest.webmanifest assets icons pages android/app/src/main/assets/www/
+          du -sh android/app/src/main/assets/www
+
       - name: Build release APK
         run: gradle -p android assembleRelease --no-daemon --stacktrace
 

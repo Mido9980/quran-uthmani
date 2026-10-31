@@ -1,6 +1,6 @@
 .vercel/
-
 android/.gradle/
 android/build/
 android/app/build/
 android/app/quran.keystore
+android/app/src/main/assets/www/
